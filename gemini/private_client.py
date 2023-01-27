@@ -31,7 +31,7 @@ class PrivateClient(PublicClient):
         request_url = self._base_url + method
 
         payload['request'] = method
-        payload['nonce'] = int(time.time() * 1000)
+        payload['nonce'] = int(time.time())
         b64_payload = base64.b64encode(json.dumps(payload).encode('utf-8'))
         signature = hmac.new(self._private_key.encode('utf-8'), b64_payload, hashlib.sha384).hexdigest()
 
